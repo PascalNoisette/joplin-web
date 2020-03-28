@@ -26,9 +26,11 @@ window.Cookies = require('js-cookie')
 // eslint-disable-next-line
 let csrftoken = Cookies.get('csrftoken')
 
-axios.defaults.headers.common['cookiename'] = 'csrftoken'
+axios.defaults.headers.common.cookiename = 'csrftoken'
 axios.defaults.headers.common['X-CSRFToken'] = csrftoken
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+axios.defaults.baseURL = window._env_.JW_SERVER_URL
+axios.defaults.params = { token: window._env_.JOPLIN_WEBCLIPPER_TOKEN }
 
 new Vue({
   router,

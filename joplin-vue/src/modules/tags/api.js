@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export function fetchTags () {
   return new Promise((resolve, reject) => {
-    axios.get('/api/jw/tags/')
+    axios.get('/tags/')
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -10,7 +10,7 @@ export function fetchTags () {
 
 export function createTag (tag) {
   return new Promise((resolve, reject) => {
-    axios.post('/api/jw/tags/', tag)
+    axios.post('/tags/', tag)
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -18,7 +18,7 @@ export function createTag (tag) {
 
 export function updateTag (tag) {
   return new Promise((resolve, reject) => {
-    axios.patch('/api/jw/tags/' + tag.id + '/', tag)
+    axios.put('/tags/' + tag.id + '/', tag)
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -26,7 +26,7 @@ export function updateTag (tag) {
 
 export function deleteTag (id) {
   return new Promise((resolve, reject) => {
-    axios.delete('/api/jw/tags/' + id)
+    axios.delete('/tags/' + id)
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })

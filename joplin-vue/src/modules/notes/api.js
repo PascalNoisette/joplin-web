@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export function fetchNotes () {
   return new Promise((resolve, reject) => {
-    axios.get('/api/jw/notes/')
+    axios.get('/notes/')
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -10,7 +10,7 @@ export function fetchNotes () {
 
 export function fetchNotesByFolder (folder) {
   return new Promise((resolve, reject) => {
-    axios.get('/api/jw/notes/folder/' + folder)
+    axios.get('/folders/' + folder + '/notes')
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -18,7 +18,7 @@ export function fetchNotesByFolder (folder) {
 
 export function fetchNotesByTag (tag) {
   return new Promise((resolve, reject) => {
-    axios.get('/api/jw/notes/tag/' + tag)
+    axios.get('/tags/' + tag + '/notes')
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -26,7 +26,7 @@ export function fetchNotesByTag (tag) {
 
 export function createNote (note) {
   return new Promise((resolve, reject) => {
-    axios.post('/api/jw/notes/', note)
+    axios.post('/notes/', note)
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -34,7 +34,7 @@ export function createNote (note) {
 
 export function updateNote (note) {
   return new Promise((resolve, reject) => {
-    axios.patch('/api/jw/notes/' + note.id, note)
+    axios.put('/notes/' + note.id, note)
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -42,7 +42,7 @@ export function updateNote (note) {
 
 export function deleteNote (id) {
   return new Promise((resolve, reject) => {
-    axios.delete('/api/jw/notes/' + id)
+    axios.delete('/notes/' + id)
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })
@@ -51,7 +51,7 @@ export function deleteNote (id) {
 export function fetchNoteTags (note) {
   return new Promise((resolve, reject) => {
     // this will trigger a retrieval of the tags of this note
-    axios.get('/api/jw/notes/' + note.id + '/tags/')
+    axios.get('/notes/' + note.id + '/tags/')
       .then((res) => { resolve(res.data) })
       .catch(error => { reject(error.statusText) })
   })

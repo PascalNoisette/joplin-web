@@ -12,36 +12,11 @@
   * js-cookie
   * bootstrap-vue
 
-## Project setup
-```
-npm install
-```
-you can set the environment variable `JW_BASE_URL` to allow providing the application else where instead of "/"
-for example : 
-```
-20:31:02 [foxmask@foxmask:~/Projects/joplin-web] $ export JW_BASE_URL='/joplin/'
- INFO  Starting development server...
- 98% after emitting CopyPlugin                                                    
-
- DONE  Compiled successfully in 5070ms                                                                                                                                                                                              8:31:46 PM
-
- 
-  App running at:
-  - Local:   http://localhost:8080/joplin/ 
-  - Network: http://192.168.1.23:8080/joplin/
-```
 ### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-
-enter `export JW_BASE_URL='/joplin/'` to build the `index.hml` with the right path of the js/css path access
-```
-export JW_BASE_URL='/'   
-npm run build
-```
 
 ### Run your tests
 ```
@@ -53,15 +28,6 @@ npm run test
 npm run lint
 ```
 
-## Joplin-web : The BackEnd
-
-if you want to change the port of your back edit vue.config.js and change
-```
-target: 'http://127.0.0.1:8001'
-```
-to the value that fit your needs
-
-see [`joplin-web/joplin_web/README.md`](../README.md) file
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

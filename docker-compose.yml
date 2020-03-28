@@ -1,7 +1,31 @@
-version: '3.2'
+version: '3'
+
 services:
+  reverse_proxy:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./htpasswd:/etc/nginx/htpasswd
+    network_mode: host
+    depends_on:
+    - server
+    - web
+  server:
+    #build: ./joplin-backend/
+    image: netpascal0123/joplin:server
+    network_mode: host
+    command: --profile /home/node/.config/joplin/ server start
+    volumes:
+    - .config/joplin:/home/node/.config/joplin
   web:
-    build: .
-    command: python /app/app.py
+    build: ./joplin-vue/
+    #image: netpascal0123/joplin:web
     ports:
-      - "8001:8001"
+      - 41185:80
+    environment:
+    - JOPLIN_RESOURCES=/home/node/.config/joplin/resources
+    - JW_SERVER_URL=http://127.0.0.1:80/api/
+    env_file:
+    - .env # you must start server once alone and launch key.sh to generate this extra env file
+    volumes:
+    - .config/joplin:/home/node/.config/joplin/
